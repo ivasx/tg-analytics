@@ -102,6 +102,14 @@ def get_top_words_all_users(data, top_n=10, exclude_stopwords=True):
 
     return result
 
+def get_top_words_by_user(data, user, top_n=10, exclude_stopwords=True):
+    words = extract_words(data.get("messages", []))
+    if exclude_stopwords:
+        words = [w for w in words if w not in STOP_WORDS]
+
+
+
+
 if __name__ == '__main__':
     data = get_all_msgs("chat_export/result.json")
 
