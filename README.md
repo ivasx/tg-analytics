@@ -1,5 +1,148 @@
 # 📊 Telegram Chat Analyzer
 
+A tool for analyzing exported Telegram chats. Allows you to get message statistics, most popular words, and view messages for a specific time period.
+
+## 🎯 What is this project for?
+
+This script helps you:
+- 📈 Analyze chat participant activity
+- 🔤 Find the most frequently used words (overall and per user)
+- 🕐 View messages for a specific time range
+- 📊 Get general conversation statistics
+
+## 📋 Requirements
+
+- Python 3.6 or newer
+- Exported JSON file from Telegram
+
+## 🚀 How to use
+
+### 1. Export chat from Telegram
+
+1. Open Telegram Desktop
+2. Select the desired chat
+3. Click on three dots (⋮) → **Export chat history**
+4. In export settings:
+   - Format: **JSON**
+   - Media size: you can select "Don't export"
+   - Other options as desired
+5. Save the export
+
+### 2. Project setup
+
+```bash
+# Project structure should be:
+# your_project/
+# ├── main.py
+# └── chat_export/
+#     └── result.json
+
+# Copy the result.json file from export to chat_export folder
+# The chat_export folder already exists, just place the JSON file there
+```
+
+### 3. Run the program
+
+```bash
+python main.py
+```
+
+## 💡 Features
+
+### Automatic analysis on startup
+
+At startup, the program will show:
+- Number of messages from each user
+- First 5 messages in the chat
+
+### Popular words analysis
+
+After startup, the program will ask:
+```
+Exclude stop words? (yes/no):
+```
+
+- **yes** — will exclude service words (and, in, on, that, etc.)
+- **no** — will show all words
+
+Then you'll see TOP-10 most popular words:
+- Overall ranking for the entire chat
+- Separate ranking for each participant
+
+### Search messages by date
+
+The program will offer to view messages for a specific period:
+
+```
+Enter date range? (yes/no): yes
+Start date (dd.mm.yyyy hh:mm): 01.01.2024 10:00
+End date (dd.mm.yyyy hh:mm): 31.01.2024 23:59
+```
+
+Date format: **DD.MM.YYYY HH:MM** (example: `15.03.2024 14:30`)
+
+## 📝 Usage example
+
+```
+Message analytics:
+Number of messages from each user:
+Ivan Petrenko: 1523
+Maria Koval: 2341
+
+First 5 messages:
+[2024/01/15 10:23:45] Ivan Petrenko: Hello!
+...
+
+Exclude stop words? (yes/no): yes
+
+TOP words among all:
+meeting        ➤ 45
+project        ➤ 38
+tomorrow       ➤ 32
+...
+
+TOP words per user:
+
+Ivan Petrenko:
+work           ➤ 67
+task           ➤ 54
+...
+```
+
+## ⚙️ Technical details
+
+### Stop words
+
+The program uses a list of stop words in Ukrainian. These are service words that usually don't carry semantic meaning (pronouns, prepositions, conjunctions).
+
+### Date formats
+
+- **Input format** (for search): `DD.MM.YYYY HH:MM`
+- **Display format**: `YYYY/MM/DD HH:MM:SS`
+
+## 🐛 Possible issues
+
+**"FileNotFoundError" error**
+- Make sure the `result.json` file is located in the `chat_export` folder
+
+**Empty statistics**
+- Check if the JSON file format is correct
+- Make sure the export contains messages
+
+**Incorrect date**
+- Use the format `DD.MM.YYYY HH:MM` with dots and colon
+- Example: `25.12.2024 18:30`
+
+## 📄 License
+
+Free to use for personal and educational purposes.
+
+---
+
+**Note**: The program works locally and doesn't transmit your data anywhere. All data remains on your computer.
+
+# 📊 Telegram Chat Analyzer
+
 Інструмент для аналізу експортованих чатів Telegram. Дозволяє отримати статистику повідомлень, найпопулярніші слова та переглядати повідомлення за певний період часу.
 
 ## 🎯 Для чого цей проект?
@@ -144,145 +287,3 @@ python main.py
 ---
 ---
 
-# 📊 Telegram Chat Analyzer
-
-A tool for analyzing exported Telegram chats. Allows you to get message statistics, most popular words, and view messages for a specific time period.
-
-## 🎯 What is this project for?
-
-This script helps you:
-- 📈 Analyze chat participant activity
-- 🔤 Find the most frequently used words (overall and per user)
-- 🕐 View messages for a specific time range
-- 📊 Get general conversation statistics
-
-## 📋 Requirements
-
-- Python 3.6 or newer
-- Exported JSON file from Telegram
-
-## 🚀 How to use
-
-### 1. Export chat from Telegram
-
-1. Open Telegram Desktop
-2. Select the desired chat
-3. Click on three dots (⋮) → **Export chat history**
-4. In export settings:
-   - Format: **JSON**
-   - Media size: you can select "Don't export"
-   - Other options as desired
-5. Save the export
-
-### 2. Project setup
-
-```bash
-# Project structure should be:
-# your_project/
-# ├── main.py
-# └── chat_export/
-#     └── result.json
-
-# Copy the result.json file from export to chat_export folder
-# The chat_export folder already exists, just place the JSON file there
-```
-
-### 3. Run the program
-
-```bash
-python main.py
-```
-
-## 💡 Features
-
-### Automatic analysis on startup
-
-At startup, the program will show:
-- Number of messages from each user
-- First 5 messages in the chat
-
-### Popular words analysis
-
-After startup, the program will ask:
-```
-Exclude stop words? (yes/no):
-```
-
-- **yes** — will exclude service words (and, in, on, that, etc.)
-- **no** — will show all words
-
-Then you'll see TOP-10 most popular words:
-- Overall ranking for the entire chat
-- Separate ranking for each participant
-
-### Search messages by date
-
-The program will offer to view messages for a specific period:
-
-```
-Enter date range? (yes/no): yes
-Start date (dd.mm.yyyy hh:mm): 01.01.2024 10:00
-End date (dd.mm.yyyy hh:mm): 31.01.2024 23:59
-```
-
-Date format: **DD.MM.YYYY HH:MM** (example: `15.03.2024 14:30`)
-
-## 📝 Usage example
-
-```
-Message analytics:
-Number of messages from each user:
-Ivan Petrenko: 1523
-Maria Koval: 2341
-
-First 5 messages:
-[2024/01/15 10:23:45] Ivan Petrenko: Hello!
-...
-
-Exclude stop words? (yes/no): yes
-
-TOP words among all:
-meeting        ➤ 45
-project        ➤ 38
-tomorrow       ➤ 32
-...
-
-TOP words per user:
-
-Ivan Petrenko:
-work           ➤ 67
-task           ➤ 54
-...
-```
-
-## ⚙️ Technical details
-
-### Stop words
-
-The program uses a list of stop words in Ukrainian. These are service words that usually don't carry semantic meaning (pronouns, prepositions, conjunctions).
-
-### Date formats
-
-- **Input format** (for search): `DD.MM.YYYY HH:MM`
-- **Display format**: `YYYY/MM/DD HH:MM:SS`
-
-## 🐛 Possible issues
-
-**"FileNotFoundError" error**
-- Make sure the `result.json` file is located in the `chat_export` folder
-
-**Empty statistics**
-- Check if the JSON file format is correct
-- Make sure the export contains messages
-
-**Incorrect date**
-- Use the format `DD.MM.YYYY HH:MM` with dots and colon
-- Example: `25.12.2024 18:30`
-
-## 📄 License
-
-Free to use for personal and educational purposes.
-
----
-
-**Note**: The program works locally and doesn't transmit your data anywhere. All data remains on your computer.
